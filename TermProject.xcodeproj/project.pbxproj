@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A101897F2656CDA600FA30CC /* NearStationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A101897E2656CDA600FA30CC /* NearStationTableViewController.swift */; };
+		A10189812656D10900FA30CC /* NearTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10189802656D10900FA30CC /* NearTabBarController.swift */; };
 		A115CD2A265127A40038E80F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A115CD29265127A40038E80F /* AppDelegate.swift */; };
 		A115CD2C265127A40038E80F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A115CD2B265127A40038E80F /* SceneDelegate.swift */; };
 		A115CD2E265127A40038E80F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A115CD2D265127A40038E80F /* ViewController.swift */; };
@@ -18,10 +20,11 @@
 		A1220D7B265570F500D7BF51 /* NearLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = A1220D77265570F400D7BF51 /* NearLogo.png */; };
 		A1220D7C265570F500D7BF51 /* StationLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = A1220D78265570F500D7BF51 /* StationLogo.png */; };
 		A1220D7E2655753300D7BF51 /* BGImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A1220D7D2655753300D7BF51 /* BGImage.png */; };
-		A1220D8026558F8900D7BF51 /* NearStationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1220D7F26558F8900D7BF51 /* NearStationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A101897E2656CDA600FA30CC /* NearStationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearStationTableViewController.swift; sourceTree = "<group>"; };
+		A10189802656D10900FA30CC /* NearTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearTabBarController.swift; sourceTree = "<group>"; };
 		A115CD26265127A40038E80F /* TermProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TermProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A115CD29265127A40038E80F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A115CD2B265127A40038E80F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,7 +38,6 @@
 		A1220D77265570F400D7BF51 /* NearLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NearLogo.png; sourceTree = "<group>"; };
 		A1220D78265570F500D7BF51 /* StationLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StationLogo.png; sourceTree = "<group>"; };
 		A1220D7D2655753300D7BF51 /* BGImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BGImage.png; sourceTree = "<group>"; };
-		A1220D7F26558F8900D7BF51 /* NearStationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearStationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +82,8 @@
 				A115CD32265127A50038E80F /* Assets.xcassets */,
 				A115CD34265127A50038E80F /* LaunchScreen.storyboard */,
 				A115CD37265127A50038E80F /* Info.plist */,
-				A1220D7F26558F8900D7BF51 /* NearStationViewController.swift */,
+				A101897E2656CDA600FA30CC /* NearStationTableViewController.swift */,
+				A10189802656D10900FA30CC /* NearTabBarController.swift */,
 			);
 			path = TermProject;
 			sourceTree = "<group>";
@@ -161,8 +164,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A115CD2E265127A40038E80F /* ViewController.swift in Sources */,
-				A1220D8026558F8900D7BF51 /* NearStationViewController.swift in Sources */,
+				A10189812656D10900FA30CC /* NearTabBarController.swift in Sources */,
 				A115CD2A265127A40038E80F /* AppDelegate.swift in Sources */,
+				A101897F2656CDA600FA30CC /* NearStationTableViewController.swift in Sources */,
 				A115CD2C265127A40038E80F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

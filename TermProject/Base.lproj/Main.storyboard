@@ -48,7 +48,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="NearLogo.png"/>
                                 <connections>
-                                    <segue destination="K8y-F0-AtM" kind="show" id="CX1-Tr-QGC"/>
+                                    <segue destination="hEN-1w-Vju" kind="show" identifier="segueToNearView" id="Ajz-ik-NQ1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -61,56 +61,85 @@
             </objects>
             <point key="canvasLocation" x="1849.2753623188407" y="71.651785714285708"/>
         </scene>
-        <!--Item 2-->
-        <scene sceneID="zZT-Ea-xMj">
+        <!--Near Station Table View Controller-->
+        <scene sceneID="LcF-Vi-zaV">
             <objects>
-                <viewController id="yvN-5L-bNc" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="MZ3-0Y-QeL">
+                <tableViewController id="jbA-HQ-mNS" customClass="NearStationTableViewController" customModule="TermProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9sB-eb-ZO2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="PjE-jM-nRq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="KP9-ky-bdp"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YGH-Dl-eeS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="fDw-lK-ghN">
+                                <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fDw-lK-ghN" id="vgm-zV-CeA">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="jbA-HQ-mNS" id="4Sq-y5-c2p"/>
+                            <outlet property="delegate" destination="jbA-HQ-mNS" id="1pu-xJ-qUI"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Xvk-3N-O17"/>
+                    <connections>
+                        <outlet property="tbData" destination="9sB-eb-ZO2" id="rfh-5f-i2H"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wqp-fv-nEs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4307.2463768115949" y="-188.16964285714286"/>
+            <point key="canvasLocation" x="4978" y="-248"/>
         </scene>
-        <!--Item 1-->
-        <scene sceneID="Nkc-gP-ddf">
+        <!--지도 보기-->
+        <scene sceneID="nar-5v-YYO">
             <objects>
-                <viewController id="JOm-hF-694" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="aZ9-8d-KEZ">
+                <viewController id="zFf-u0-QZc" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fpk-H7-3Me">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="wIq-z9-blA"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zpH-6R-0ix">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qaB-Ex-w8X"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="8AN-ZJ-X9V"/>
+                    <tabBarItem key="tabBarItem" title="지도 보기" image="map.fill" catalog="system" id="djG-eo-fEF"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pO6-Jd-xNm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tXw-J6-7YH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4307" y="-858"/>
+            <point key="canvasLocation" x="4047.826086956522" y="-989.0625"/>
         </scene>
-        <!--Near Station View Controller-->
-        <scene sceneID="fED-5g-69N">
+        <!--근처 전기차 충전소 찾기-->
+        <scene sceneID="f44-Jb-vuu">
             <objects>
-                <tabBarController storyboardIdentifier="NearStationView" id="K8y-F0-AtM" customClass="NearStationViewController" customModule="TermProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="2vf-1V-KJE"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Tpl-3D-95i">
+                <tabBarController id="hEN-1w-Vju" customClass="NearTabBarController" customModule="TermProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="근처 전기차 충전소 찾기" id="ueW-EO-p1k">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="2C4-El-27I">
+                            <connections>
+                                <segue destination="rKM-TI-qma" kind="unwind" unwindAction="doneToMainViewControllerWithSegue:" id="Ns8-k4-pAv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SJa-EE-kUr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="JOm-hF-694" kind="relationship" relationship="viewControllers" id="4hS-Ry-lGd"/>
-                        <segue destination="yvN-5L-bNc" kind="relationship" relationship="viewControllers" id="jnq-dM-pxw"/>
+                        <segue destination="zFf-u0-QZc" kind="relationship" relationship="viewControllers" id="j0E-I7-v4q"/>
+                        <segue destination="o7z-6i-jVL" kind="relationship" relationship="viewControllers" id="gPp-gD-qwb"/>
                     </connections>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tsm-iQ-fyn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Ob-3w-sNK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="rKM-TI-qma" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3418.840579710145" y="-517.63392857142856"/>
+            <point key="canvasLocation" x="3164" y="-657"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5h1-x0-jtI">
@@ -130,12 +159,33 @@
             </objects>
             <point key="canvasLocation" x="939.13043478260875" y="71.651785714285708"/>
         </scene>
+        <!--상세 보기-->
+        <scene sceneID="X9p-WM-4KI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="o7z-6i-jVL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="상세 보기" image="magnifyingglass" catalog="system" id="uIp-Z6-5hv"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fUM-W5-rwx">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jbA-HQ-mNS" kind="relationship" relationship="rootViewController" id="xfI-Sd-y64"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xcz-kd-9nf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4050.7246376811599" y="-248.4375"/>
+        </scene>
     </scenes>
     <resources>
         <image name="AppLogo.png" width="256" height="256"/>
         <image name="BGImage.png" width="793" height="786.5"/>
         <image name="NationLogo.png" width="282" height="282"/>
         <image name="NearLogo.png" width="282" height="282"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="map.fill" catalog="system" width="128" height="110"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
