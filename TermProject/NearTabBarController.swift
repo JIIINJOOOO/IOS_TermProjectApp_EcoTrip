@@ -10,6 +10,7 @@ import CoreLocation
 
 class NearTabBarController: UITabBarController,CLLocationManagerDelegate {
     
+    // 현재 위치 받아오기
     var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -31,6 +32,7 @@ class NearTabBarController: UITabBarController,CLLocationManagerDelegate {
 //            print("위치 정보 Off 상태")
 //        }
         
+        
     }
     // 위치 정보 계속 업데이트 -> 위도 경도 받아옴
         func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -38,6 +40,7 @@ class NearTabBarController: UITabBarController,CLLocationManagerDelegate {
             if let location = locations.first {
                 print("위도: \(location.coordinate.latitude)")
                 print("경도: \(location.coordinate.longitude)")
+                convertToAddressWith(coordinate: location)
             }
         }
         
@@ -45,6 +48,29 @@ class NearTabBarController: UITabBarController,CLLocationManagerDelegate {
         func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
             print(error)
         }
+
+    // 위도,경도를 주소로 변환
+    func convertToAddressWith(coordinate: CLLocation) {
+        let geoCoder = CLGeocoder()
+        let postCoder =
+        geoCoder.reverseGeocodeLocation(coordinate) { (placemarks, error) -> Void in
+            if error != nil {
+                NSLog("\(error)")
+                return
+            }
+            guard let placemark = placemarks?.first,
+                  let addrList = placemark.addressDictionary?["FormattedAddressLines"] as? [String] else {
+                        return
+                    }
+            let address = addrList.joined(separator: " ")
+            print(address)
+            let thoroughfare = placemark.addressDictionary!["Thoroughfare"] as! String
+            // 우편번호 얻는 코드
+            let postalCode = placemark.postalCode ?? "unknown"
+            print(thoroughfare)
+            print(postalCode)
+        }
+    }
 
 }
     

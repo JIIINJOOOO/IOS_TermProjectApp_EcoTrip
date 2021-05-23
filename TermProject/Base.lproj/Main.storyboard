@@ -96,7 +96,7 @@
         <!--지도 보기-->
         <scene sceneID="nar-5v-YYO">
             <objects>
-                <viewController id="zFf-u0-QZc" sceneMemberID="viewController">
+                <viewController id="zFf-u0-QZc" customClass="NearMapViewController" customModule="TermProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fpk-H7-3Me">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -110,6 +110,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="지도 보기" image="map.fill" catalog="system" id="djG-eo-fEF"/>
+                    <connections>
+                        <outlet property="mapView" destination="zpH-6R-0ix" id="cfi-MO-Zk3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tXw-J6-7YH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

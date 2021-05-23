@@ -20,6 +20,8 @@
 		A1220D7B265570F500D7BF51 /* NearLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = A1220D77265570F400D7BF51 /* NearLogo.png */; };
 		A1220D7C265570F500D7BF51 /* StationLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = A1220D78265570F500D7BF51 /* StationLogo.png */; };
 		A1220D7E2655753300D7BF51 /* BGImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A1220D7D2655753300D7BF51 /* BGImage.png */; };
+		A16C1ADD265A96420007D64E /* NearMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C1ADC265A96420007D64E /* NearMapViewController.swift */; };
+		A16C1ADF265A99CF0007D64E /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C1ADE265A99CF0007D64E /* Station.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		A1220D77265570F400D7BF51 /* NearLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NearLogo.png; sourceTree = "<group>"; };
 		A1220D78265570F500D7BF51 /* StationLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StationLogo.png; sourceTree = "<group>"; };
 		A1220D7D2655753300D7BF51 /* BGImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BGImage.png; sourceTree = "<group>"; };
+		A16C1ADC265A96420007D64E /* NearMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMapViewController.swift; sourceTree = "<group>"; };
+		A16C1ADE265A99CF0007D64E /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,8 @@
 				A115CD37265127A50038E80F /* Info.plist */,
 				A101897E2656CDA600FA30CC /* NearStationTableViewController.swift */,
 				A10189802656D10900FA30CC /* NearTabBarController.swift */,
+				A16C1ADC265A96420007D64E /* NearMapViewController.swift */,
+				A16C1ADE265A99CF0007D64E /* Station.swift */,
 			);
 			path = TermProject;
 			sourceTree = "<group>";
@@ -164,10 +170,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A115CD2E265127A40038E80F /* ViewController.swift in Sources */,
+				A16C1ADD265A96420007D64E /* NearMapViewController.swift in Sources */,
 				A10189812656D10900FA30CC /* NearTabBarController.swift in Sources */,
 				A115CD2A265127A40038E80F /* AppDelegate.swift in Sources */,
 				A101897F2656CDA600FA30CC /* NearStationTableViewController.swift in Sources */,
 				A115CD2C265127A40038E80F /* SceneDelegate.swift in Sources */,
+				A16C1ADF265A99CF0007D64E /* Station.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

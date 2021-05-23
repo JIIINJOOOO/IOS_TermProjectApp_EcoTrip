@@ -11,7 +11,28 @@ class NearStationTableViewController: UITableViewController, XMLParserDelegate {
 
     @IBOutlet var tbData: UITableView!
     
-   
+    // xml파일을 다운로드 및 파싱하는 오브젝트(객체)
+    var parser = XMLParser()
+    
+    // feed 데이터를 저장하는 mutable array
+    var posts = NSMutableArray()
+    
+    // title과 date같은 feed 데이터를 저장하는 mutable dictionary
+    var elements = NSMutableDictionary()
+    var element = NSString()
+    
+    // 저장 문자열 변수
+    var yadmNm = NSMutableString()
+    var addr = NSMutableString()
+    
+    func beginParsing() {
+        posts = []
+        // 가져오는 xml data에 따라서 파싱하는 타이틀이 달라진다
+        //parser = XMLParser(contentsOf: (URL(string: url!))!)!
+        parser.delegate = self
+        parser.parse()
+        tbData!.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
