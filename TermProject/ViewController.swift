@@ -31,6 +31,16 @@ class ViewController: UIViewController {
                 
             }
         }
+        if segue.identifier == "segueToNationView" {
+            // 메인에선 네비게이션 바 없애고 메뉴 들어갔을 때만 네비게이션 바 생기도록
+            self.navigationController?.isNavigationBarHidden = false
+            if let tabController = segue.destination as? UITabBarController {
+//                if let nearTableViewController = tabController.navigationController?.topViewController as?
+                
+                    //tabController.url = url +
+                
+            }
+        }
     }
     
 }
