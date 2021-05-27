@@ -150,7 +150,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="zxx-vk-p2k" kind="show" id="bpq-Pb-XWP"/>
+                                    <segue destination="zxx-vk-p2k" kind="show" identifier="segueToDetailTable" id="bpq-Pb-XWP"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -168,10 +168,10 @@
             </objects>
             <point key="canvasLocation" x="4978" y="-248"/>
         </scene>
-        <!--View Controller-->
+        <!--Near Detail View Controller-->
         <scene sceneID="K4n-7e-Wp9">
             <objects>
-                <viewController id="zxx-vk-p2k" sceneMemberID="viewController">
+                <viewController id="zxx-vk-p2k" customClass="NearDetailViewController" customModule="TermProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3oZ-JF-5J2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -192,6 +192,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="ScB-do-AJb"/>
+                    <connections>
+                        <outlet property="detailTableView" destination="jnV-Td-noG" id="fQt-gK-Fv9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SIG-mj-Vyt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
