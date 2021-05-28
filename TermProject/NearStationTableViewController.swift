@@ -23,6 +23,8 @@ class NearStationTableViewController: UITableViewController {
     // 현재 위치 근처 충전소만 담겨있는 배열
     var nearStationsArr = NSMutableArray()
     
+    // 선택한 셀의 충전소 명
+    var stationName = ""
     
    
     override func viewDidLoad() {
@@ -154,13 +156,17 @@ class NearStationTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "segueToDetailView" {
-            // 메인에선 네비게이션 바 없애고 메뉴 들어갔을 때만 네비게이션 바 생기도록
-            if let tableController = segue.destination as? NearDetailViewController {
-                tableController.userCity = userCity
-                tableController.zcode = zcode
+        if segue.identifier == "segueToDetailTable" {
+            if let cell = sender as? UITableViewCell {
+                let indexPath = tableView.indexPath(for: cell)
+                stationName = (nearStationsArr.object(at: (indexPath?.row)!) as AnyObject).value(forKey: "statNm") as! NSString as String
+                if let tableController = segue.destination as? NearDetailViewController {
+                    tableController.nearStationsArr = nearStationsArr
+                    tableController.stationName = stationName
+                }
             }
-    }
+        }
     
 
+    }
 }

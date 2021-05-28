@@ -179,31 +179,31 @@ class NearTabBarController: UITabBarController, CLLocationManagerDelegate, XMLPa
                 elements.setObject(lng, forKey: "lng" as NSCopying)
             }
             if !chgerType.isEqual(nil) {
-                elements.setObject(lng, forKey: "chgerType" as NSCopying)
+                elements.setObject(chgerType, forKey: "chgerType" as NSCopying)
             }
             if !useTime.isEqual(nil) {
-                elements.setObject(lng, forKey: "useTime" as NSCopying)
+                elements.setObject(useTime, forKey: "useTime" as NSCopying)
             }
             if !busiNm.isEqual(nil) {
-                elements.setObject(lng, forKey: "busiNm" as NSCopying)
+                elements.setObject(busiNm, forKey: "busiNm" as NSCopying)
             }
             if !busiCall.isEqual(nil) {
-                elements.setObject(lng, forKey: "busiCall" as NSCopying)
+                elements.setObject(busiCall, forKey: "busiCall" as NSCopying)
             }
             if !powerType.isEqual(nil) {
-                elements.setObject(lng, forKey: "powerType" as NSCopying)
+                elements.setObject(powerType, forKey: "powerType" as NSCopying)
             }
             if !parkingFree.isEqual(nil) {
-                elements.setObject(lng, forKey: "parkingFree" as NSCopying)
+                elements.setObject(parkingFree, forKey: "parkingFree" as NSCopying)
             }
             if !note.isEqual(nil) {
-                elements.setObject(lng, forKey: "note" as NSCopying)
+                elements.setObject(note, forKey: "note" as NSCopying)
             }
             if !limitYn.isEqual(nil) {
-                elements.setObject(lng, forKey: "limitYn" as NSCopying)
+                elements.setObject(limitYn, forKey: "limitYn" as NSCopying)
             }
             if !limitDetail.isEqual(nil) {
-                elements.setObject(lng, forKey: "limitDetail" as NSCopying)
+                elements.setObject(limitDetail, forKey: "limitDetail" as NSCopying)
             }
             
             posts.add(elements)
@@ -230,7 +230,6 @@ class NearTabBarController: UITabBarController, CLLocationManagerDelegate, XMLPa
       
         // - map view에 데이터 전달
         let mapVC = self.viewControllers?.first as? NearMapViewController
-        print("탭바 유저:\(userCity)")
         mapVC?.posts = posts
         mapVC?.userCity = userCity
                
