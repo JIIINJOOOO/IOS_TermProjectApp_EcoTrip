@@ -30,7 +30,7 @@ class NearStationTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //self.navigationController?.isNavigationBarHidden = true // 나중에 상세 테이블뷰로 넘어가는 세그에서 히든 풀어주기
+       
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -40,6 +40,18 @@ class NearStationTableViewController: UITableViewController {
        
         makeNearStationsArray()
     }
+    
+   
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+        
+       
+      
+    }
+    
+  
     // 파싱한 데이터중 위치주소의 데이터만 따로 array에 담음
     func makeNearStationsArray() {
         let arr = posts as Array
@@ -157,6 +169,7 @@ class NearStationTableViewController: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if segue.identifier == "segueToDetailTable" {
+            self.navigationController?.isNavigationBarHidden = false
             if let cell = sender as? UITableViewCell {
                 let indexPath = tableView.indexPath(for: cell)
                 stationName = (nearStationsArr.object(at: (indexPath?.row)!) as AnyObject).value(forKey: "statNm") as! NSString as String

@@ -1,25 +1,14 @@
 //
-//  NearTabBarController.swift
+//  NationViewController.swift
 //  TermProject
 //
-//  Created by KPUGAME on 2021/05/21.
+//  Created by KPUGAME on 2021/05/29.
 //
 
 import UIKit
-import CoreLocation
 
-class NearTabBarController: UITabBarController, CLLocationManagerDelegate, XMLParserDelegate {
-    // 현재 위치 받아오기
-    var locationManager = CLLocationManager()
-    
-    
-    var url : String = "http://apis.data.go.kr/B552584/EvCharger/getChargerInfo?serviceKey=W%2F3ncWwPolB0XlcbjKBVfwzNz1R6r2V%2BtVuqYdTdP8kx24s8sqRZCaleQt0p429ccaIqmg%2Bpc9ciXux%2BbHkjpQ%3D%3D&zcode="
-  
-    var rows = 0 // default = 0
-    
-    var zcode : String = "" // default = 경기
-    // 현재 위치의 시
-    var userCity : String = "" // default = 수원
+class NationViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, XMLParserDelegate {
+    var url : String = "http://apis.data.go.kr/B552584/EvCharger/getChargerInfo?serviceKey=W%2F3ncWwPolB0XlcbjKBVfwzNz1R6r2V%2BtVuqYdTdP8kx24s8sqRZCaleQt0p429ccaIqmg%2Bpc9ciXux%2BbHkjpQ%3D%3D"
 
 
     // xml파일을 다운로드 및 파싱하는 오브젝트(객체)
@@ -27,8 +16,7 @@ class NearTabBarController: UITabBarController, CLLocationManagerDelegate, XMLPa
     
     // feed 데이터를 저장하는 mutable array
     var posts = NSMutableArray()
-    // 현재 위치 근처 충전소만 담겨있는 배열
-    var nearStationsArr = NSMutableArray()
+  
     
     // title과 date같은 feed 데이터를 저장하는 mutable dictionary
     var elements = NSMutableDictionary()
@@ -69,7 +57,7 @@ class NearTabBarController: UITabBarController, CLLocationManagerDelegate, XMLPa
         posts = []
         // 가져오는 xml data에 따라서 파싱하는 타이틀이 달라진다
         //parser = XMLParser(contentsOf: (URL(string: url!))!)!
-        parser = XMLParser(contentsOf: (URL(string: url+zcode))!)!
+        parser = XMLParser(contentsOf: (URL(string: url))!)!
         
         parser.delegate = self
         parser.parse()
@@ -209,97 +197,60 @@ class NearTabBarController: UITabBarController, CLLocationManagerDelegate, XMLPa
             posts.add(elements)
         }
     }
-  
+    var stateStrArr : [String] = [] // 광역,특별시/도
+    var cityStrArr : [String] = [] // 시, 구
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return stateStrArr.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return stateStrArr[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        showPickerTF.text = stateStrArr[row]
+    }
+
+    @IBOutlet weak var showPickerTF: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
-        beginParsing()
-        // 델리게이트 설정
-        locationManager.delegate = self
-        // 거리 정확도
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        // 사용자에게 허가 받기 alert
-        locationManager.requestWhenInUseAuthorization()
-
-        // 아이폰 설정에서의 위치 서비스가 켜진 상태라면
-//        if CLLocationManager.locationServicesEnabled() {
-//            print("위치 서비스 On 상태")
-            locationManager.startUpdatingLocation() // 위치 정보 받아오기 시작
-            print(locationManager.location?.coordinate)
-       
-      
-        // - map view에 데이터 전달
-        let mapVC = self.viewControllers?.first as? NearMapViewController
-        mapVC?.posts = posts
-        mapVC?.userCity = userCity
-               
-    }
-    // 뷰가 화면에 표시된 이후에 수행
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        // tab bar controller 의 하위 탭 뷰들에 이렇게 접근하면 됨
-        // - table view 에 데이터 전달
-        let navVC = self.viewControllers?.last as? UINavigationController
-        let tabelVC = navVC?.viewControllers.first as? NearStationTableViewController
-        tabelVC?.userCity = userCity
-        tabelVC?.posts = posts
-       
+        showPickerTF.tintColor = .clear
+        createPickerView(textfield: showPickerTF)
+        dismissPickerView(textfield: showPickerTF)
     }
     
-    // 위치 정보 계속 업데이트 -> 위도 경도 받아옴
-        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            //print("탭바 didUpdateLocations")
-            if let location = locations.first {
-                print("위도: \(location.coordinate.latitude)")
-                print("경도: \(location.coordinate.longitude)")
-          
-                convertToAddressWith(coordinate: location)
-            }
-        }
+    func createPickerView(textfield : UITextField) {
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        textfield.inputView = pickerView
+    }
+    
+    func dismissPickerView(textfield : UITextField) {
+            let toolBar = UIToolbar()
+            toolBar.sizeToFit()
+            let button = UIBarButtonItem(title: "선택", style: .plain, target: self, action: #selector(self.action))
+            toolBar.setItems([button], animated: true)
+            toolBar.isUserInteractionEnabled = true
+        textfield.inputAccessoryView = toolBar
+    }
+    @objc func action(sender: UIBarButtonItem)
+    {
         
-        // 위도 경도 받아오기 에러
-        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-            print(error)
-        }
-
-    // 위도,경도를 주소로 변환
-    func convertToAddressWith(coordinate: CLLocation) {
-        let geoCoder = CLGeocoder()
-        
-        let postCoder =
-        geoCoder.reverseGeocodeLocation(coordinate) { (placemarks, error) -> Void in
-            if error != nil {
-                NSLog("\(error)")
-                return
-            }
-            guard let placemark = placemarks?.first,
-                  let addrList = placemark.addressDictionary?["FormattedAddressLines"] as? [String] else {
-                        return
-                    }
-            let address = addrList.joined(separator: " ")
-            //print("탭바 어드레스: \(address)")
-            let city = placemark.addressDictionary!["City"] as! String
-            
-            // 우편번호 얻는 코드
-            let postalCode = placemark.postalCode ?? "unknown"
-            //print("탭바 유저시티: \(self.userCity)")
-            //print(postalCode)
-        }
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            // Get the new view controller using segue.destination.
-            // Pass the selected object to the new view controller.
-    
-    }
-}
-    
-
-
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
- 
-
-
-
+}

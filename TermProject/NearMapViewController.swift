@@ -38,10 +38,7 @@ class NearMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     var lat = NSMutableString()
     var lng = NSMutableString()
     
-    //충전소이름 변수와 utf8 변수 추가
-    var stationname = ""
-    var stationname_utf8 = ""
-    
+   
     
     
     func beginParsing() {
@@ -203,13 +200,13 @@ class NearMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
         // Pass the selected object to the new view controller.
     }
     */
-    let regionRadius: CLLocationDistance = 3000
+    let regionRadius: CLLocationDistance = 2000
     func centerMapOnLocation(location: CLLocation) {
         let coordnateRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         mapView.setRegion(coordnateRegion, animated: true)
     }
     
-    // 생성하는 Hospital 객체들의 배열 선언
+    // 생성하는 Station 객체들의 배열 선언
     var stations: [Station] = []
     
     // 전송받은 posts 배열에서 정보를 얻어서 Station 객체를 생성하고 배열에 추가 생성

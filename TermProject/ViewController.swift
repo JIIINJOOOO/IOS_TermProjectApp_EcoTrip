@@ -12,9 +12,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     // 현재 위치 받아오기
     var locationManager = CLLocationManager()
     
-    var zcode : String = "41" // default = 경기
+    
+    var zcode : String = ""
     // 현재 위치의 시
-    var userCity : String = "" // default = 수원
+    var userCity : String = "" 
     
     override func viewDidLoad() {
         super.viewDidLoad()

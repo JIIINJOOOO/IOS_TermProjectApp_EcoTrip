@@ -20,6 +20,7 @@
 		A1220D7B265570F500D7BF51 /* NearLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = A1220D77265570F400D7BF51 /* NearLogo.png */; };
 		A1220D7C265570F500D7BF51 /* StationLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = A1220D78265570F500D7BF51 /* StationLogo.png */; };
 		A1220D7E2655753300D7BF51 /* BGImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A1220D7D2655753300D7BF51 /* BGImage.png */; };
+		A13865E72662880600E1B201 /* NationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13865E62662880600E1B201 /* NationViewController.swift */; };
 		A16C1ADD265A96420007D64E /* NearMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C1ADC265A96420007D64E /* NearMapViewController.swift */; };
 		A16C1ADF265A99CF0007D64E /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C1ADE265A99CF0007D64E /* Station.swift */; };
 		A18F46A42660076A00EA9DD1 /* NearDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18F46A32660076A00EA9DD1 /* NearDetailViewController.swift */; };
@@ -41,6 +42,7 @@
 		A1220D77265570F400D7BF51 /* NearLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NearLogo.png; sourceTree = "<group>"; };
 		A1220D78265570F500D7BF51 /* StationLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StationLogo.png; sourceTree = "<group>"; };
 		A1220D7D2655753300D7BF51 /* BGImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BGImage.png; sourceTree = "<group>"; };
+		A13865E62662880600E1B201 /* NationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationViewController.swift; sourceTree = "<group>"; };
 		A16C1ADC265A96420007D64E /* NearMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMapViewController.swift; sourceTree = "<group>"; };
 		A16C1ADE265A99CF0007D64E /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		A18F46A32660076A00EA9DD1 /* NearDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearDetailViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				A16C1ADC265A96420007D64E /* NearMapViewController.swift */,
 				A16C1ADE265A99CF0007D64E /* Station.swift */,
 				A18F46A32660076A00EA9DD1 /* NearDetailViewController.swift */,
+				A13865E62662880600E1B201 /* NationViewController.swift */,
 			);
 			path = TermProject;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A115CD2E265127A40038E80F /* ViewController.swift in Sources */,
+				A13865E72662880600E1B201 /* NationViewController.swift in Sources */,
 				A18F46A42660076A00EA9DD1 /* NearDetailViewController.swift in Sources */,
 				A16C1ADD265A96420007D64E /* NearMapViewController.swift in Sources */,
 				A10189812656D10900FA30CC /* NearTabBarController.swift in Sources */,
