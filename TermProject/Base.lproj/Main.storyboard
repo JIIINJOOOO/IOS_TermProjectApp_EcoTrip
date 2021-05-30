@@ -111,10 +111,13 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ttu-re-rdY">
-                                <rect key="frame" x="193" y="541" width="42" height="41"/>
+                                <rect key="frame" x="114" y="527" width="200" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="검색"/>
+                                <connections>
+                                    <segue destination="bQy-Hq-Rov" kind="show" identifier="segueToNationMap" id="dYF-Xn-jqj"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ddy-Yn-RrH"/>
@@ -128,6 +131,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="showCityTF" destination="omJ-kO-Y5D" id="oUD-hM-c5K"/>
                         <outlet property="showPickerTF" destination="jmo-2o-q3Z" id="vAi-hq-HqW"/>
                     </connections>
                 </viewController>
@@ -135,6 +139,31 @@
                 <exit id="LMY-88-8d1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3162.6168224299063" y="636.93304535637151"/>
+        </scene>
+        <!--Nation Map View Controller-->
+        <scene sceneID="o7T-fo-JR4">
+            <objects>
+                <viewController id="bQy-Hq-Rov" customClass="NationMapViewController" customModule="TermProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ut4-4p-3eR">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eR5-nx-5ge">
+                                <rect key="frame" x="0.0" y="88" width="428" height="544"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="gMC-az-uMA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Bew-s5-f9t"/>
+                    <connections>
+                        <outlet property="mapView" destination="eR5-nx-5ge" id="DJJ-qb-3GZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="prH-bN-sD2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4045.7943925233644" y="636.93304535637151"/>
         </scene>
         <!--Near Station Table View Controller-->
         <scene sceneID="LcF-Vi-zaV">

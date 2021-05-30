@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BB55FCFC0FEE87BCD266CE8 /* Pods_TermProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748B0642BAE008622A75CE58 /* Pods_TermProject.framework */; };
 		A101897F2656CDA600FA30CC /* NearStationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A101897E2656CDA600FA30CC /* NearStationTableViewController.swift */; };
 		A10189812656D10900FA30CC /* NearTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10189802656D10900FA30CC /* NearTabBarController.swift */; };
 		A115CD2A265127A40038E80F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A115CD29265127A40038E80F /* AppDelegate.swift */; };
@@ -23,10 +24,15 @@
 		A13865E72662880600E1B201 /* NationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13865E62662880600E1B201 /* NationViewController.swift */; };
 		A16C1ADD265A96420007D64E /* NearMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C1ADC265A96420007D64E /* NearMapViewController.swift */; };
 		A16C1ADF265A99CF0007D64E /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C1ADE265A99CF0007D64E /* Station.swift */; };
+		A18EE976266410BA003CD992 /* 28408-an-electric-car-lottie-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = A18EE975266410BA003CD992 /* 28408-an-electric-car-lottie-animation.json */; };
+		A18EE97A266413B2003CD992 /* 43293-cityscape.json in Resources */ = {isa = PBXBuildFile; fileRef = A18EE979266413B2003CD992 /* 43293-cityscape.json */; };
+		A18EE97C26642032003CD992 /* NationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18EE97B26642032003CD992 /* NationMapViewController.swift */; };
 		A18F46A42660076A00EA9DD1 /* NearDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18F46A32660076A00EA9DD1 /* NearDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1532E04B5B5601DD41723C84 /* Pods-TermProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TermProject.release.xcconfig"; path = "Target Support Files/Pods-TermProject/Pods-TermProject.release.xcconfig"; sourceTree = "<group>"; };
+		748B0642BAE008622A75CE58 /* Pods_TermProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TermProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A101897E2656CDA600FA30CC /* NearStationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearStationTableViewController.swift; sourceTree = "<group>"; };
 		A10189802656D10900FA30CC /* NearTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearTabBarController.swift; sourceTree = "<group>"; };
 		A115CD26265127A40038E80F /* TermProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TermProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,7 +51,11 @@
 		A13865E62662880600E1B201 /* NationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationViewController.swift; sourceTree = "<group>"; };
 		A16C1ADC265A96420007D64E /* NearMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMapViewController.swift; sourceTree = "<group>"; };
 		A16C1ADE265A99CF0007D64E /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		A18EE975266410BA003CD992 /* 28408-an-electric-car-lottie-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "28408-an-electric-car-lottie-animation.json"; sourceTree = "<group>"; };
+		A18EE979266413B2003CD992 /* 43293-cityscape.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "43293-cityscape.json"; sourceTree = "<group>"; };
+		A18EE97B26642032003CD992 /* NationMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationMapViewController.swift; sourceTree = "<group>"; };
 		A18F46A32660076A00EA9DD1 /* NearDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearDetailViewController.swift; sourceTree = "<group>"; };
+		B30F2429AA79AF1BC78E993A /* Pods-TermProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TermProject.debug.xcconfig"; path = "Target Support Files/Pods-TermProject/Pods-TermProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BB55FCFC0FEE87BCD266CE8 /* Pods_TermProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +75,8 @@
 			children = (
 				A115CD28265127A40038E80F /* TermProject */,
 				A115CD27265127A40038E80F /* Products */,
+				D62EC25DEE285F99A5B5C296 /* Pods */,
+				BE20170A514657358EB95AC1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,6 +91,8 @@
 		A115CD28265127A40038E80F /* TermProject */ = {
 			isa = PBXGroup;
 			children = (
+				A18EE979266413B2003CD992 /* 43293-cityscape.json */,
+				A18EE975266410BA003CD992 /* 28408-an-electric-car-lottie-animation.json */,
 				A1220D7D2655753300D7BF51 /* BGImage.png */,
 				A1220D75265570F400D7BF51 /* AppLogo.png */,
 				A1220D76265570F400D7BF51 /* NationLogo.png */,
@@ -96,8 +111,26 @@
 				A16C1ADE265A99CF0007D64E /* Station.swift */,
 				A18F46A32660076A00EA9DD1 /* NearDetailViewController.swift */,
 				A13865E62662880600E1B201 /* NationViewController.swift */,
+				A18EE97B26642032003CD992 /* NationMapViewController.swift */,
 			);
 			path = TermProject;
+			sourceTree = "<group>";
+		};
+		BE20170A514657358EB95AC1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				748B0642BAE008622A75CE58 /* Pods_TermProject.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D62EC25DEE285F99A5B5C296 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B30F2429AA79AF1BC78E993A /* Pods-TermProject.debug.xcconfig */,
+				1532E04B5B5601DD41723C84 /* Pods-TermProject.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -107,9 +140,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A115CD3A265127A50038E80F /* Build configuration list for PBXNativeTarget "TermProject" */;
 			buildPhases = (
+				E2E1CBCF45BE0CC0BEC948C3 /* [CP] Check Pods Manifest.lock */,
 				A115CD22265127A40038E80F /* Sources */,
 				A115CD23265127A40038E80F /* Frameworks */,
 				A115CD24265127A40038E80F /* Resources */,
+				E7929A7089F2046DC3748440 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -157,12 +192,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A18EE976266410BA003CD992 /* 28408-an-electric-car-lottie-animation.json in Resources */,
 				A1220D7B265570F500D7BF51 /* NearLogo.png in Resources */,
 				A115CD36265127A50038E80F /* LaunchScreen.storyboard in Resources */,
 				A1220D7E2655753300D7BF51 /* BGImage.png in Resources */,
 				A1220D79265570F500D7BF51 /* AppLogo.png in Resources */,
 				A115CD33265127A50038E80F /* Assets.xcassets in Resources */,
 				A1220D7C265570F500D7BF51 /* StationLogo.png in Resources */,
+				A18EE97A266413B2003CD992 /* 43293-cityscape.json in Resources */,
 				A115CD31265127A40038E80F /* Main.storyboard in Resources */,
 				A1220D7A265570F500D7BF51 /* NationLogo.png in Resources */,
 			);
@@ -170,11 +207,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E2E1CBCF45BE0CC0BEC948C3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TermProject-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E7929A7089F2046DC3748440 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TermProject/Pods-TermProject-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TermProject/Pods-TermProject-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TermProject/Pods-TermProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A115CD22265127A40038E80F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A18EE97C26642032003CD992 /* NationMapViewController.swift in Sources */,
 				A115CD2E265127A40038E80F /* ViewController.swift in Sources */,
 				A13865E72662880600E1B201 /* NationViewController.swift in Sources */,
 				A18F46A42660076A00EA9DD1 /* NearDetailViewController.swift in Sources */,
@@ -327,6 +407,7 @@
 		};
 		A115CD3B265127A50038E80F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B30F2429AA79AF1BC78E993A /* Pods-TermProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -346,6 +427,7 @@
 		};
 		A115CD3C265127A50038E80F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1532E04B5B5601DD41723C84 /* Pods-TermProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

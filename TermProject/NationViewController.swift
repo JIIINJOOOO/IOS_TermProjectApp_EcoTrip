@@ -6,18 +6,29 @@
 //
 
 import UIKit
+import Lottie
 
 class NationViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, XMLParserDelegate {
-    var url : String = "http://apis.data.go.kr/B552584/EvCharger/getChargerInfo?serviceKey=W%2F3ncWwPolB0XlcbjKBVfwzNz1R6r2V%2BtVuqYdTdP8kx24s8sqRZCaleQt0p429ccaIqmg%2Bpc9ciXux%2BbHkjpQ%3D%3D"
-
+    var url : String = "http://apis.data.go.kr/B552584/EvCharger/getChargerInfo?serviceKey=W%2F3ncWwPolB0XlcbjKBVfwzNz1R6r2V%2BtVuqYdTdP8kx24s8sqRZCaleQt0p429ccaIqmg%2Bpc9ciXux%2BbHkjpQ%3D%3D&zcode="
+    
 
     // xml파일을 다운로드 및 파싱하는 오브젝트(객체)
     var parser = XMLParser()
     
     // feed 데이터를 저장하는 mutable array
     var posts = NSMutableArray()
-  
     
+
+    
+    // 지역코드
+    let zcodeArr = ["11","41","26","27","28",
+                 "29","30","31","42","43",
+                 "44","45","46","47","48",
+                 "50"]
+    
+    let stateStrArr = ["서울특별시","경기도","부산광역시","대구광역시","인천광역시","광주광역시","대전광역시","울산광역시","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주특별자치도"]
+    
+   
     // title과 date같은 feed 데이터를 저장하는 mutable dictionary
     var elements = NSMutableDictionary()
     var element = NSString()
@@ -53,11 +64,11 @@ class NationViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     
 
     
-    func beginParsing() {
+    func beginParsing(zcode : String) {
         posts = []
         // 가져오는 xml data에 따라서 파싱하는 타이틀이 달라진다
         //parser = XMLParser(contentsOf: (URL(string: url!))!)!
-        parser = XMLParser(contentsOf: (URL(string: url))!)!
+        parser = XMLParser(contentsOf: (URL(string: url+zcode))!)!
         
         parser.delegate = self
         parser.parse()
@@ -197,60 +208,203 @@ class NationViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
             posts.add(elements)
         }
     }
-    var stateStrArr : [String] = [] // 광역,특별시/도
-    var cityStrArr : [String] = [] // 시, 구
+    
+    var selectState = "서울특별시"
+    var selectCity = "" // 피커뷰 선택시 값을 갖고 있다가 확인버튼 클릭시 텍스트필드에 세팅한다
+
+    var addrDict : [String:[String]] = [:]
+    var cityArr : [String] = []
+    var addrArr : [Substring] = []
+    // 파싱한 데이터중 위치주소의 데이터만 따로 Dictionary에 담음
+    func makeAddrDictionary() {
+        for i in 0..<zcodeArr.count
+        {
+            beginParsing(zcode: zcodeArr[i])
+            let arr = posts as Array
+            var str : String
+            print("arr count: \(arr.count)")
+            for j in 0..<arr.count
+            {
+                str = (arr[j].value(forKey: "addr")) as! NSString as String
+                //print(str)
+            
+                addrArr = str.split(separator: " ")
+                //print(addrArr)
+                //print("addrArr counts: \(addrArr.count)")
+                if(!addrArr.contains("null"))
+                {
+                    if(!addrArr[1].contains("287기둥옆"))
+                    {
+                        cityArr.append(String(addrArr[1]))
+                    }
+                }
+            }
+            cityArr = removeDuplicate(cityArr)
+            addrDict.updateValue(cityArr, forKey: stateStrArr[i])
+            cityArr.removeAll()
+        }
+        
+    }
+    func removeDuplicate (_ array: [String]) -> [String] {
+        var removedArray = [String]()
+        for i in array {
+            if removedArray.contains(i) == false {
+                removedArray.append(i)
+            }
+        }
+        return removedArray
+    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return stateStrArr.count
+        if(pickerView == pickerView_State)
+        {
+            return addrDict.keys.count
+        }
+        else
+        {
+            print(selectState)
+            return addrDict[selectState]!.count
+        }
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return stateStrArr[row]
+        if(pickerView == pickerView_State)
+        {
+            return stateStrArr[row]
+        }
+        //return Array(addrDict)[row].key
+        else
+        {
+            let cityArr = addrDict[selectState]
+            return cityArr![row]
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        showPickerTF.text = stateStrArr[row]
+        if(pickerView == pickerView_State)
+        {
+            selectState = stateStrArr[row]
+            //selectCity =  Array(addrDict)[row].key
+            //showPickerTF.text = Array(addrDict)[row].key
+            print("selectState: \(selectState)")
+        }
+        else
+        {
+            let cityArr = addrDict[selectState]
+            selectCity = cityArr![row]
+            print("select city: \(selectCity)")
+        }
     }
 
+    // state text field
     @IBOutlet weak var showPickerTF: UITextField!
+    // city text field
+    @IBOutlet weak var showCityTF: UITextField!
+    
+    // 피커뷰
+    let pickerView_State = UIPickerView()
+    let pickerView_City = UIPickerView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let animationView = AnimationView(name: "43293-cityscape") // AnimationView(name: "lottie json 파일 이름")으로 애니메이션 뷰 생성
+        animationView.frame = CGRect(x: 0, y: 200, width: 435, height: 100) // 애니메이션뷰의 크기 설정
+        //animationView.frame = self.view.bounds // 애니메이션뷰의 위치설정
+        animationView.contentMode = .scaleAspectFill // 애니메이션뷰의 콘텐트모드 설정
+            
+        view.addSubview(animationView) // 애니메이션뷰를 메인뷰에 추가
+        
+        animationView.play() // 애미메이션뷰 실행
+        animationView.loopMode = .loop // 무한 재생
+        makeAddrDictionary()
         showPickerTF.tintColor = .clear
-        createPickerView(textfield: showPickerTF)
-        dismissPickerView(textfield: showPickerTF)
-    }
-    
-    func createPickerView(textfield : UITextField) {
-        let pickerView = UIPickerView()
-        pickerView.delegate = self
-        textfield.inputView = pickerView
-    }
-    
-    func dismissPickerView(textfield : UITextField) {
-            let toolBar = UIToolbar()
-            toolBar.sizeToFit()
-            let button = UIBarButtonItem(title: "선택", style: .plain, target: self, action: #selector(self.action))
-            toolBar.setItems([button], animated: true)
-            toolBar.isUserInteractionEnabled = true
-        textfield.inputAccessoryView = toolBar
-    }
-    @objc func action(sender: UIBarButtonItem)
-    {
+        showCityTF.tintColor = .clear
+        createStatePickerView()
+        dismissStatePickerView()
         
     }
-    /*
+    
+    func createStatePickerView() {
+        // state
+        pickerView_State.delegate = self
+        pickerView_State.dataSource = self
+        pickerView_State.backgroundColor = .white
+        showPickerTF.inputView = pickerView_State
+        // city
+        pickerView_City.delegate = self
+        pickerView_City.dataSource = self
+        pickerView_City.backgroundColor = .white
+        showCityTF.inputView = pickerView_City
+    }
+    
+    func dismissStatePickerView() {
+        // state
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        toolBar.backgroundColor = .systemBlue
+        toolBar.isTranslucent = true
+        let btnDone = UIBarButtonItem(title: "선택", style: .done, target: self, action: #selector(onStatePickDone))
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let btnCancel = UIBarButtonItem(title: "취소", style: .done, target: self, action: #selector(onStatePickCancel))
+        toolBar.setItems([btnCancel , space , btnDone], animated: true)   // 버튼추가
+        toolBar.isUserInteractionEnabled = true
+        showPickerTF.inputAccessoryView = toolBar
+        // city
+        let toolBar_city = UIToolbar()
+        toolBar_city.sizeToFit()
+        toolBar_city.backgroundColor = .systemBlue
+        toolBar_city.isTranslucent = true
+        let btnDone_city = UIBarButtonItem(title: "선택", style: .done, target: self, action: #selector(onCityPickDone))
+        let space_city = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let btnCancel_city = UIBarButtonItem(title: "취소", style: .done, target: self, action: #selector(onCityPickCancel))
+        toolBar_city.setItems([btnDone_city , space_city , btnCancel_city], animated: true)   // 버튼추가
+        toolBar_city.isUserInteractionEnabled = true
+        showCityTF.inputAccessoryView = toolBar_city
+    }
+    @objc func onStatePickDone() {
+        showPickerTF.text = selectState
+        showPickerTF.textAlignment = NSTextAlignment(.center)
+        showPickerTF.resignFirstResponder()
+        //selectState = ""
+        //print("addrdict value: \(addrDict[selectState])")
+    }
+    @objc func onCityPickDone() {
+        
+        showCityTF.text = selectCity
+        showCityTF.textAlignment = NSTextAlignment(.center)
+        showCityTF.resignFirstResponder()
+        //selectCity = ""
+    }
+    
+    @objc func onStatePickCancel() {
+        showPickerTF.resignFirstResponder() // 피커뷰를 내림 (텍스트필드가 responder 상태를 읽음)
+        //selectState = ""
+    }
+    @objc func onCityPickCancel() {
+        showCityTF.resignFirstResponder() // 피커뷰를 내림 (텍스트필드가 responder 상태를 읽음)
+        //selectCity = ""
+    }
+
+   
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "segueToNationMap" {
+            if let mapController = segue.destination as? NationMapViewController  {
+                mapController.posts = posts
+                mapController.statecity = selectState + " " + selectCity
+            }
+        }
     }
-    */
+
 
 }
