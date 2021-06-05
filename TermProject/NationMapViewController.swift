@@ -8,16 +8,23 @@
 import UIKit
 import MapKit
 
-class NationMapViewController: UIViewController, MKMapViewDelegate {
+class NationMapViewController: UIViewController, MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate {
+    
 
     @IBOutlet weak var mapView: MKMapView!
     
+    @IBOutlet weak var tableView: UITableView!
     // feed 데이터를 저장하는 mutable array
     var posts = NSMutableArray()
     // 검색한 위치 충전소만 담겨있는 배열
     var searchedStationsArr = NSMutableArray()
     
     var statecity : String = ""
+    
+    var bIsCityFilled = false // city 까지 채워졌을땐 지도 가까이 보여주도록
+    
+    // 선택한 셀의 충전소 명
+    var stationName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,14 +39,14 @@ class NationMapViewController: UIViewController, MKMapViewDelegate {
     // 파싱한 데이터중 해당 위치주소의 데이터만 따로 array에 담음
     func makeSearchedStationsArray() {
         let arr = posts as Array
-        print("posts: \(posts)")
-        print("arr:\(arr)")
+        //print("posts: \(posts)")
+        //print("arr:\(arr)")
         var str : String
         for i in 0..<arr.count
         {
             str = (arr[i].value(forKey: "addr")) as! NSString as String
-            //print(str)
-            //print("맵 유저시티:\(userCity)")
+            print(str)
+            print("맵 스테이트시티:\(statecity)")
             if(str.contains(statecity))
             {
                 searchedStationsArr.add(arr[i])
@@ -57,9 +64,15 @@ class NationMapViewController: UIViewController, MKMapViewDelegate {
     
     // 전송받은 posts 배열에서 정보를 얻어서 Station 객체를 생성하고 배열에 추가 생성
     func loadInitialData() {
-        var coordinate = CLLocationCoordinate2D(latitude: 37.58582,longitude: 126.97657)
-        let span = MKCoordinateSpan(latitudeDelta: 0.15, longitudeDelta: 0.15)
+        var coordinate = CLLocationCoordinate2D()
         var count = 0
+       
+        var span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        if(!bIsCityFilled) {
+            span = MKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.3)
+        }
+       
+        //print("searchedStationsArr: \(searchedStationsArr)")
         for post in searchedStationsArr {
             let statNm = (post as AnyObject).value(forKey: "statNm") as! NSString as String
             let addr = (post as AnyObject).value(forKey: "addr") as! NSString as String
@@ -67,12 +80,13 @@ class NationMapViewController: UIViewController, MKMapViewDelegate {
             let lng = (post as AnyObject).value(forKey: "lng") as! NSString as String
             let d_lat = (lat as NSString).doubleValue
             let d_lon = (lng as NSString).doubleValue
-//            if(count < 1)
-//            {
-//                coordinate.latitude = d_lat
-//                coordinate.longitude = d_lon
-//                count += 1
-//            }
+            if(count < 1)
+            {
+                coordinate.latitude = d_lat
+                coordinate.longitude = d_lon
+                count += 1
+            }
+            //print("post:\(post)")
             let station = Station(title: statNm, locationName: addr, coordinate: CLLocationCoordinate2D(latitude: d_lat, longitude: d_lon))
             stations.append(station)
         }
@@ -104,14 +118,69 @@ class NationMapViewController: UIViewController, MKMapViewDelegate {
             return view
         }
 
-    /*
+    // 테이블뷰
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchedStationsArr.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "StationCell", for: indexPath)
+        
+        var subTitleStatStr : String = String("NULL")
+        // Configure the cell...
+//        if (((posts.object(at: indexPath.row) as AnyObject).value(forKey: "addr") as! NSString as String).contains(userCity)) {
+//            subTitleStatStr = (posts.object(at: indexPath.row) as AnyObject).value(forKey: "stat") as! NSString as String
+//            cell.textLabel?.text = (posts.object(at: indexPath.row) as AnyObject).value(forKey: "statNm") as! NSString as String
+   
+        subTitleStatStr = (searchedStationsArr.object(at: indexPath.row) as AnyObject).value(forKey: "stat") as! NSString as String
+        cell.textLabel?.text = (searchedStationsArr.object(at: indexPath.row) as AnyObject).value(forKey: "statNm") as! NSString as String
+        
+   
+       
+        //}
+      
+        
+      
+        
+        
+        if (subTitleStatStr == "1")
+        {
+            subTitleStatStr = "통신 이상"
+        } else if (subTitleStatStr == "2") {
+            subTitleStatStr = "충전 대기"
+        } else if (subTitleStatStr == "3") {
+            subTitleStatStr = "충전 중"
+        } else if (subTitleStatStr == "4") {
+            subTitleStatStr = "운영 중지"
+        } else if (subTitleStatStr == "5") {
+            subTitleStatStr = "점검 중"
+        } else if (subTitleStatStr == "9") {
+            subTitleStatStr = "상태 미확인"
+        }
+        cell.detailTextLabel?.text = subTitleStatStr
+  
+
+        return cell
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "segueToNationDetail" {
+            self.navigationController?.isNavigationBarHidden = false
+            if let cell = sender as? UITableViewCell {
+                let indexPath = tableView.indexPath(for: cell)
+                stationName = (searchedStationsArr.object(at: (indexPath?.row)!) as AnyObject).value(forKey: "statNm") as! NSString as String
+                if let tableController = segue.destination as? NationDetailTableViewController {
+                    tableController.searchedStationsArr = searchedStationsArr
+                    tableController.stationName = stationName
+                }
+            }
+        }
     }
-    */
+    
 
 }

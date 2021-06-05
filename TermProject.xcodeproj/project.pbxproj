@@ -22,6 +22,13 @@
 		A1220D7C265570F500D7BF51 /* StationLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = A1220D78265570F500D7BF51 /* StationLogo.png */; };
 		A1220D7E2655753300D7BF51 /* BGImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A1220D7D2655753300D7BF51 /* BGImage.png */; };
 		A13865E72662880600E1B201 /* NationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13865E62662880600E1B201 /* NationViewController.swift */; };
+		A15A313C266C0013005313D5 /* NationDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A313B266C0013005313D5 /* NationDetailTableViewController.swift */; };
+		A15A313F266C0D12005313D5 /* NationTravel.png in Resources */ = {isa = PBXBuildFile; fileRef = A15A313D266C0D12005313D5 /* NationTravel.png */; };
+		A15A3140266C0D12005313D5 /* NearTravel.png in Resources */ = {isa = PBXBuildFile; fileRef = A15A313E266C0D12005313D5 /* NearTravel.png */; };
+		A15A3143266C0E3E005313D5 /* chip.wav in Resources */ = {isa = PBXBuildFile; fileRef = A15A3141266C0E3E005313D5 /* chip.wav */; };
+		A15A3144266C0E3E005313D5 /* cardFlip1.wav in Resources */ = {isa = PBXBuildFile; fileRef = A15A3142266C0E3E005313D5 /* cardFlip1.wav */; };
+		A15A3147266C0E88005313D5 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A3145266C0E88005313D5 /* AudioController.swift */; };
+		A15A3148266C0E88005313D5 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A3146266C0E88005313D5 /* Config.swift */; };
 		A16C1ADD265A96420007D64E /* NearMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C1ADC265A96420007D64E /* NearMapViewController.swift */; };
 		A16C1ADF265A99CF0007D64E /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C1ADE265A99CF0007D64E /* Station.swift */; };
 		A18EE976266410BA003CD992 /* 28408-an-electric-car-lottie-animation.json in Resources */ = {isa = PBXBuildFile; fileRef = A18EE975266410BA003CD992 /* 28408-an-electric-car-lottie-animation.json */; };
@@ -49,6 +56,13 @@
 		A1220D78265570F500D7BF51 /* StationLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StationLogo.png; sourceTree = "<group>"; };
 		A1220D7D2655753300D7BF51 /* BGImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BGImage.png; sourceTree = "<group>"; };
 		A13865E62662880600E1B201 /* NationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationViewController.swift; sourceTree = "<group>"; };
+		A15A313B266C0013005313D5 /* NationDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationDetailTableViewController.swift; sourceTree = "<group>"; };
+		A15A313D266C0D12005313D5 /* NationTravel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NationTravel.png; sourceTree = "<group>"; };
+		A15A313E266C0D12005313D5 /* NearTravel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NearTravel.png; sourceTree = "<group>"; };
+		A15A3141266C0E3E005313D5 /* chip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = chip.wav; sourceTree = "<group>"; };
+		A15A3142266C0E3E005313D5 /* cardFlip1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardFlip1.wav; sourceTree = "<group>"; };
+		A15A3145266C0E88005313D5 /* AudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
+		A15A3146266C0E88005313D5 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		A16C1ADC265A96420007D64E /* NearMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearMapViewController.swift; sourceTree = "<group>"; };
 		A16C1ADE265A99CF0007D64E /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
 		A18EE975266410BA003CD992 /* 28408-an-electric-car-lottie-animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "28408-an-electric-car-lottie-animation.json"; sourceTree = "<group>"; };
@@ -91,6 +105,12 @@
 		A115CD28265127A40038E80F /* TermProject */ = {
 			isa = PBXGroup;
 			children = (
+				A15A3145266C0E88005313D5 /* AudioController.swift */,
+				A15A3146266C0E88005313D5 /* Config.swift */,
+				A15A3142266C0E3E005313D5 /* cardFlip1.wav */,
+				A15A3141266C0E3E005313D5 /* chip.wav */,
+				A15A313D266C0D12005313D5 /* NationTravel.png */,
+				A15A313E266C0D12005313D5 /* NearTravel.png */,
 				A18EE979266413B2003CD992 /* 43293-cityscape.json */,
 				A18EE975266410BA003CD992 /* 28408-an-electric-car-lottie-animation.json */,
 				A1220D7D2655753300D7BF51 /* BGImage.png */,
@@ -112,6 +132,7 @@
 				A18F46A32660076A00EA9DD1 /* NearDetailViewController.swift */,
 				A13865E62662880600E1B201 /* NationViewController.swift */,
 				A18EE97B26642032003CD992 /* NationMapViewController.swift */,
+				A15A313B266C0013005313D5 /* NationDetailTableViewController.swift */,
 			);
 			path = TermProject;
 			sourceTree = "<group>";
@@ -192,8 +213,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A15A313F266C0D12005313D5 /* NationTravel.png in Resources */,
+				A15A3140266C0D12005313D5 /* NearTravel.png in Resources */,
 				A18EE976266410BA003CD992 /* 28408-an-electric-car-lottie-animation.json in Resources */,
+				A15A3144266C0E3E005313D5 /* cardFlip1.wav in Resources */,
 				A1220D7B265570F500D7BF51 /* NearLogo.png in Resources */,
+				A15A3143266C0E3E005313D5 /* chip.wav in Resources */,
 				A115CD36265127A50038E80F /* LaunchScreen.storyboard in Resources */,
 				A1220D7E2655753300D7BF51 /* BGImage.png in Resources */,
 				A1220D79265570F500D7BF51 /* AppLogo.png in Resources */,
@@ -260,9 +285,12 @@
 				A18F46A42660076A00EA9DD1 /* NearDetailViewController.swift in Sources */,
 				A16C1ADD265A96420007D64E /* NearMapViewController.swift in Sources */,
 				A10189812656D10900FA30CC /* NearTabBarController.swift in Sources */,
+				A15A3148266C0E88005313D5 /* Config.swift in Sources */,
 				A115CD2A265127A40038E80F /* AppDelegate.swift in Sources */,
 				A101897F2656CDA600FA30CC /* NearStationTableViewController.swift in Sources */,
+				A15A313C266C0013005313D5 /* NationDetailTableViewController.swift in Sources */,
 				A115CD2C265127A40038E80F /* SceneDelegate.swift in Sources */,
+				A15A3147266C0E88005313D5 /* AudioController.swift in Sources */,
 				A16C1ADF265A99CF0007D64E /* Station.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

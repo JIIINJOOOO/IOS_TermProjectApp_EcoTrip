@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import Speech
 import Lottie
 
 class NationViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, XMLParserDelegate {
     var url : String = "http://apis.data.go.kr/B552584/EvCharger/getChargerInfo?serviceKey=W%2F3ncWwPolB0XlcbjKBVfwzNz1R6r2V%2BtVuqYdTdP8kx24s8sqRZCaleQt0p429ccaIqmg%2Bpc9ciXux%2BbHkjpQ%3D%3D&zcode="
-    
+   
 
     // xml파일을 다운로드 및 파싱하는 오브젝트(객체)
     var parser = XMLParser()
@@ -18,7 +19,10 @@ class NationViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     // feed 데이터를 저장하는 mutable array
     var posts = NSMutableArray()
     
-
+    // 맵뷰로 넘기기 전 파싱할 zcode
+    var zcode = ""
+    
+    var bIsCityFilled = false // city 채워졌는지 넘겨주기
     
     // 지역코드
     let zcodeArr = ["11","41","26","27","28",
@@ -28,6 +32,7 @@ class NationViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     
     let stateStrArr = ["서울특별시","경기도","부산광역시","대구광역시","인천광역시","광주광역시","대전광역시","울산광역시","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주특별자치도"]
     
+   
    
     // title과 date같은 feed 데이터를 저장하는 mutable dictionary
     var elements = NSMutableDictionary()
@@ -64,6 +69,8 @@ class NationViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     
 
     
+  
+    
     func beginParsing(zcode : String) {
         posts = []
         // 가져오는 xml data에 따라서 파싱하는 타이틀이 달라진다
@@ -74,6 +81,7 @@ class NationViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         parser.parse()
         //tbData!.reloadData()
     }
+    
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String: String]) {
         // xml url을 웹에서 띄워서 element이름을 찾는다
         // element 안에서 정보를 가져온다
@@ -216,6 +224,7 @@ class NationViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     var cityArr : [String] = []
     var addrArr : [Substring] = []
     // 파싱한 데이터중 위치주소의 데이터만 따로 Dictionary에 담음
+  
     func makeAddrDictionary() {
         for i in 0..<zcodeArr.count
         {
@@ -266,7 +275,7 @@ class NationViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         }
         else
         {
-            print(selectState)
+            //print(selectState)
             return addrDict[selectState]!.count
         }
     }
@@ -279,6 +288,7 @@ class NationViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         else
         {
             let cityArr = addrDict[selectState]
+            
             return cityArr![row]
         }
     }
@@ -286,6 +296,8 @@ class NationViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if(pickerView == pickerView_State)
         {
+            print("row:\(row)")
+            zcode = zcodeArr[row]
             selectState = stateStrArr[row]
             //selectCity =  Array(addrDict)[row].key
             //showPickerTF.text = Array(addrDict)[row].key
@@ -303,7 +315,7 @@ class NationViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     @IBOutlet weak var showPickerTF: UITextField!
     // city text field
     @IBOutlet weak var showCityTF: UITextField!
-    
+   
     // 피커뷰
     let pickerView_State = UIPickerView()
     let pickerView_City = UIPickerView()
@@ -312,21 +324,26 @@ class NationViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let animationView = AnimationView(name: "43293-cityscape") // AnimationView(name: "lottie json 파일 이름")으로 애니메이션 뷰 생성
-        animationView.frame = CGRect(x: 0, y: 200, width: 435, height: 100) // 애니메이션뷰의 크기 설정
-        //animationView.frame = self.view.bounds // 애니메이션뷰의 위치설정
-        animationView.contentMode = .scaleAspectFill // 애니메이션뷰의 콘텐트모드 설정
-            
-        view.addSubview(animationView) // 애니메이션뷰를 메인뷰에 추가
+       
         
-        animationView.play() // 애미메이션뷰 실행
-        animationView.loopMode = .loop // 무한 재생
+       
         makeAddrDictionary()
         showPickerTF.tintColor = .clear
         showCityTF.tintColor = .clear
         createStatePickerView()
         dismissStatePickerView()
         
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let animationView = AnimationView(name: "43293-cityscape") // AnimationView(name: "lottie json 파일 이름")으로 애니메이션 뷰 생성
+        animationView.frame = CGRect(x: 0, y: 200, width: 435, height: 100) // 애니메이션뷰의 크기 설정
+        //animationView.frame = self.view.bounds // 애니메이션뷰의 위치설정
+        animationView.contentMode = .scaleAspectFill // 애니메이션뷰의 콘텐트모드 설정
+            
+        view.addSubview(animationView) // 애니메이션뷰를 메인뷰에 추가
+        animationView.play() // 애니메이션뷰 실행
+        animationView.loopMode = .loop // 무한 재생
     }
     
     func createStatePickerView() {
@@ -362,7 +379,7 @@ class NationViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         let btnDone_city = UIBarButtonItem(title: "선택", style: .done, target: self, action: #selector(onCityPickDone))
         let space_city = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let btnCancel_city = UIBarButtonItem(title: "취소", style: .done, target: self, action: #selector(onCityPickCancel))
-        toolBar_city.setItems([btnDone_city , space_city , btnCancel_city], animated: true)   // 버튼추가
+        toolBar_city.setItems([btnCancel_city , space_city , btnDone_city], animated: true)   // 버튼추가
         toolBar_city.isUserInteractionEnabled = true
         showCityTF.inputAccessoryView = toolBar_city
     }
@@ -374,10 +391,10 @@ class NationViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         //print("addrdict value: \(addrDict[selectState])")
     }
     @objc func onCityPickDone() {
-        
         showCityTF.text = selectCity
         showCityTF.textAlignment = NSTextAlignment(.center)
         showCityTF.resignFirstResponder()
+        bIsCityFilled = true
         //selectCity = ""
     }
     
@@ -389,9 +406,142 @@ class NationViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         showCityTF.resignFirstResponder() // 피커뷰를 내림 (텍스트필드가 responder 상태를 읽음)
         //selectCity = ""
     }
-
-   
     
+    // 음성인식 코드
+    // 도 음성인식 버튼
+    @IBOutlet weak var stateTranscribeButton: UIButton!
+    // 시 음성인식 버튼
+    @IBOutlet weak var cityTranscribeButton: UIButton!
+    @IBOutlet weak var myTextView: UITextView!
+    var bIsStateTranscribing = false
+    var bIsCityTranscribing = false
+    
+    private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "ko-KR"))!
+    private var speechRecognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+    private var speechRecognitionTask: SFSpeechRecognitionTask?
+    //AVAudioEngine 인스턴스 사용하여 오디오를 오디오 버퍼로 스트리밍
+    private let audioEngine = AVAudioEngine()
+   
+    @IBAction func toggleStateTranscribing(_ sender: Any) {
+        if(!bIsStateTranscribing) {
+            cityTranscribeButton.isEnabled = false
+            try! startSession()
+            bIsStateTranscribing = true
+        }
+        else {
+            if audioEngine.isRunning {
+                audioEngine.stop()
+                speechRecognitionRequest?.endAudio()
+                cityTranscribeButton.isEnabled = true
+                bIsStateTranscribing = false
+            }
+            if let index = stateStrArr.firstIndex(of:self.myTextView.text) {
+                showPickerTF.text = self.myTextView.text
+                showPickerTF.textAlignment = NSTextAlignment(.center)
+                self.pickerView_State.selectRow(index,inComponent:0,animated:true)
+                self.zcode = zcodeArr[index]
+                self.selectState = self.myTextView.text
+            }
+        }
+    }
+    @IBAction func toggleCityTranscribing(_ sender: Any) {
+        if(!bIsCityTranscribing) {
+            stateTranscribeButton.isEnabled = false
+            try! startSession()
+            bIsCityTranscribing = true
+            bIsCityFilled = true
+        }
+        else {
+            if audioEngine.isRunning {
+                audioEngine.stop()
+                speechRecognitionRequest?.endAudio()
+                stateTranscribeButton.isEnabled = true
+                bIsCityTranscribing = false
+            }
+            let cityArr = addrDict[selectState]
+            if let index = cityArr!.firstIndex(of:self.myTextView.text) {
+                showCityTF.text = self.myTextView.text
+                showCityTF.textAlignment = NSTextAlignment(.center)
+                self.pickerView_City.selectRow(index,inComponent:0,animated:true)
+                self.selectCity = self.myTextView.text
+            }
+        }
+    }
+    
+    func startSession() throws {
+        if let recognitionTask = speechRecognitionTask {
+            recognitionTask.cancel()
+            self.speechRecognitionTask = nil
+        }
+        let audioSession = AVAudioSession.sharedInstance()
+        try audioSession.setCategory(AVAudioSession.Category.record)
+        
+        speechRecognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+        
+        guard let recognitionRequest = speechRecognitionRequest else {
+            fatalError("SFSpeechAudioBufferRecognitionRequest object creation failed")
+        }
+        
+        let inputNode = audioEngine.inputNode
+        recognitionRequest.shouldReportPartialResults = true
+        
+        speechRecognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { result, error in
+            var finished = false
+            if let result = result {
+                self.myTextView.text =
+                    result.bestTranscription.formattedString
+                finished = result.isFinal
+            }
+            
+            if error != nil || finished {
+                self.audioEngine.stop()
+                inputNode.removeTap(onBus: 0)
+                
+                self.speechRecognitionRequest = nil
+                self.speechRecognitionTask = nil
+                
+                //self.transcribeButton.isEnabled = true
+            }
+        }
+        
+        let recordingFormat = inputNode.outputFormat(forBus: 0)
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) {
+            (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
+            self.speechRecognitionRequest?.append(buffer)
+        }
+        
+        audioEngine.prepare()
+        try audioEngine.start()
+    }
+    func authorizeSR() {
+        // 완료 핸들러로 지정된 클로저를 사용하여 SFSpeechRecognizer 클래스의 requestAuthorization 메소드를 호출헙니다.
+        SFSpeechRecognizer.requestAuthorization { authStatus in
+            // 이 핸들러에는 4개의 값( 권한부여,거부,제한 또는 결정되지 않음) 중 하나 일 수 있는 상태값이 전달됨
+            // 그런다음 스위치문을 사용하여 상태를 평가하고 기록 버튼을 활성화하거나 해당 버튼에 실패 원인을 표시함
+            OperationQueue.main.addOperation {
+                switch authStatus {
+                case .authorized:
+                    self.stateTranscribeButton.isEnabled = true
+                    self.cityTranscribeButton.isEnabled = true
+                    
+                case .denied:
+                    self.stateTranscribeButton.isEnabled = false
+                    self.cityTranscribeButton.isEnabled = false
+                    self.stateTranscribeButton.setTitle("Speech recognition access denied by user", for: .disabled)
+                
+                case .restricted:
+                    self.stateTranscribeButton.isEnabled = false
+                    self.cityTranscribeButton.isEnabled = false
+                    self.stateTranscribeButton.setTitle("Speech recognition restricted on device", for: .disabled)
+                    
+                case .notDetermined:
+                    self.stateTranscribeButton.isEnabled = false
+                    self.cityTranscribeButton.isEnabled = false
+                    self.stateTranscribeButton.setTitle("Speech recognition not authorized", for: .disabled)
+                }
+            }
+        }
+    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -400,8 +550,11 @@ class NationViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         // Pass the selected object to the new view controller.
         if segue.identifier == "segueToNationMap" {
             if let mapController = segue.destination as? NationMapViewController  {
+                beginParsing(zcode: zcode)
+                print("zcode:\(zcode)")
                 mapController.posts = posts
                 mapController.statecity = selectState + " " + selectCity
+                mapController.bIsCityFilled = bIsCityFilled
             }
         }
     }
