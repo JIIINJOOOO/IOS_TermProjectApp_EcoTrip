@@ -26,6 +26,9 @@ class NationMapViewController: UIViewController, MKMapViewDelegate, UITableViewD
     // 선택한 셀의 충전소 명
     var stationName = ""
     
+    // 차트 뷰에 보내줄거
+    var cityArr : [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -87,7 +90,7 @@ class NationMapViewController: UIViewController, MKMapViewDelegate, UITableViewD
                 count += 1
             }
             //print("post:\(post)")
-            let station = Station(title: statNm, locationName: addr, coordinate: CLLocationCoordinate2D(latitude: d_lat, longitude: d_lon))
+            let station = Station(title: statNm, locationName: addr, coordinate: CLLocationCoordinate2D(latitude: d_lat, longitude: d_lon), markerTintColor: .cyan)
             stations.append(station)
         }
         let region = MKCoordinateRegion(center: coordinate, span: span)
@@ -114,6 +117,7 @@ class NationMapViewController: UIViewController, MKMapViewDelegate, UITableViewD
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: -5, y: 5)
                 view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+                view.markerTintColor = annotation.markerTintColor
             }
             return view
         }
@@ -178,6 +182,13 @@ class NationMapViewController: UIViewController, MKMapViewDelegate, UITableViewD
                     tableController.searchedStationsArr = searchedStationsArr
                     tableController.stationName = stationName
                 }
+            }
+        }
+        
+        if segue.identifier == "segueToChart" {
+            if let chartController = segue.destination as? NationChartViewController {
+                chartController.posts = posts
+                chartController.cityArr = cityArr
             }
         }
     }

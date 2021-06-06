@@ -218,7 +218,7 @@ class NearMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
             let lng = (post as AnyObject).value(forKey: "lng") as! NSString as String
             let d_lat = (lat as NSString).doubleValue
             let d_lon = (lng as NSString).doubleValue
-            let station = Station(title: statNm, locationName: addr, coordinate: CLLocationCoordinate2D(latitude: d_lat, longitude: d_lon))
+            let station = Station(title: statNm, locationName: addr, coordinate: CLLocationCoordinate2D(latitude: d_lat, longitude: d_lon),markerTintColor: .green)
             stations.append(station)
         }
     }
@@ -242,6 +242,8 @@ class NearMapViewController: UIViewController, MKMapViewDelegate, CLLocationMana
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: -5, y: 5)
                 view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+                view.markerTintColor = annotation.markerTintColor
+
             }
             return view
         }

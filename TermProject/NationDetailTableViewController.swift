@@ -17,6 +17,8 @@ class NationDetailTableViewController: UITableViewController {
     // 선택한 셀의 충전소 명
     var stationName = ""
     
+  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -104,6 +106,7 @@ class NationDetailTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NationDetailCell", for: indexPath)
+        
 
         // Configure the cell...
         

@@ -23,8 +23,6 @@
 		A1220D7E2655753300D7BF51 /* BGImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A1220D7D2655753300D7BF51 /* BGImage.png */; };
 		A13865E72662880600E1B201 /* NationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13865E62662880600E1B201 /* NationViewController.swift */; };
 		A15A313C266C0013005313D5 /* NationDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A313B266C0013005313D5 /* NationDetailTableViewController.swift */; };
-		A15A313F266C0D12005313D5 /* NationTravel.png in Resources */ = {isa = PBXBuildFile; fileRef = A15A313D266C0D12005313D5 /* NationTravel.png */; };
-		A15A3140266C0D12005313D5 /* NearTravel.png in Resources */ = {isa = PBXBuildFile; fileRef = A15A313E266C0D12005313D5 /* NearTravel.png */; };
 		A15A3143266C0E3E005313D5 /* chip.wav in Resources */ = {isa = PBXBuildFile; fileRef = A15A3141266C0E3E005313D5 /* chip.wav */; };
 		A15A3144266C0E3E005313D5 /* cardFlip1.wav in Resources */ = {isa = PBXBuildFile; fileRef = A15A3142266C0E3E005313D5 /* cardFlip1.wav */; };
 		A15A3147266C0E88005313D5 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A3145266C0E88005313D5 /* AudioController.swift */; };
@@ -35,6 +33,9 @@
 		A18EE97A266413B2003CD992 /* 43293-cityscape.json in Resources */ = {isa = PBXBuildFile; fileRef = A18EE979266413B2003CD992 /* 43293-cityscape.json */; };
 		A18EE97C26642032003CD992 /* NationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18EE97B26642032003CD992 /* NationMapViewController.swift */; };
 		A18F46A42660076A00EA9DD1 /* NearDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18F46A32660076A00EA9DD1 /* NearDetailViewController.swift */; };
+		A1FF94C6266CD60700CE7938 /* NearSightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FF94C5266CD60700CE7938 /* NearSightsViewController.swift */; };
+		A1FF94C8266D294600CE7938 /* NearSightImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FF94C7266D294600CE7938 /* NearSightImageController.swift */; };
+		A1FF94CA266D3AB600CE7938 /* NationChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FF94C9266D3AB600CE7938 /* NationChartViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,8 +58,6 @@
 		A1220D7D2655753300D7BF51 /* BGImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BGImage.png; sourceTree = "<group>"; };
 		A13865E62662880600E1B201 /* NationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationViewController.swift; sourceTree = "<group>"; };
 		A15A313B266C0013005313D5 /* NationDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationDetailTableViewController.swift; sourceTree = "<group>"; };
-		A15A313D266C0D12005313D5 /* NationTravel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NationTravel.png; sourceTree = "<group>"; };
-		A15A313E266C0D12005313D5 /* NearTravel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NearTravel.png; sourceTree = "<group>"; };
 		A15A3141266C0E3E005313D5 /* chip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = chip.wav; sourceTree = "<group>"; };
 		A15A3142266C0E3E005313D5 /* cardFlip1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardFlip1.wav; sourceTree = "<group>"; };
 		A15A3145266C0E88005313D5 /* AudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
@@ -69,6 +68,9 @@
 		A18EE979266413B2003CD992 /* 43293-cityscape.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "43293-cityscape.json"; sourceTree = "<group>"; };
 		A18EE97B26642032003CD992 /* NationMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationMapViewController.swift; sourceTree = "<group>"; };
 		A18F46A32660076A00EA9DD1 /* NearDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearDetailViewController.swift; sourceTree = "<group>"; };
+		A1FF94C5266CD60700CE7938 /* NearSightsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearSightsViewController.swift; sourceTree = "<group>"; };
+		A1FF94C7266D294600CE7938 /* NearSightImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearSightImageController.swift; sourceTree = "<group>"; };
+		A1FF94C9266D3AB600CE7938 /* NationChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationChartViewController.swift; sourceTree = "<group>"; };
 		B30F2429AA79AF1BC78E993A /* Pods-TermProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TermProject.debug.xcconfig"; path = "Target Support Files/Pods-TermProject/Pods-TermProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,8 +111,6 @@
 				A15A3146266C0E88005313D5 /* Config.swift */,
 				A15A3142266C0E3E005313D5 /* cardFlip1.wav */,
 				A15A3141266C0E3E005313D5 /* chip.wav */,
-				A15A313D266C0D12005313D5 /* NationTravel.png */,
-				A15A313E266C0D12005313D5 /* NearTravel.png */,
 				A18EE979266413B2003CD992 /* 43293-cityscape.json */,
 				A18EE975266410BA003CD992 /* 28408-an-electric-car-lottie-animation.json */,
 				A1220D7D2655753300D7BF51 /* BGImage.png */,
@@ -133,6 +133,9 @@
 				A13865E62662880600E1B201 /* NationViewController.swift */,
 				A18EE97B26642032003CD992 /* NationMapViewController.swift */,
 				A15A313B266C0013005313D5 /* NationDetailTableViewController.swift */,
+				A1FF94C5266CD60700CE7938 /* NearSightsViewController.swift */,
+				A1FF94C7266D294600CE7938 /* NearSightImageController.swift */,
+				A1FF94C9266D3AB600CE7938 /* NationChartViewController.swift */,
 			);
 			path = TermProject;
 			sourceTree = "<group>";
@@ -213,8 +216,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A15A313F266C0D12005313D5 /* NationTravel.png in Resources */,
-				A15A3140266C0D12005313D5 /* NearTravel.png in Resources */,
 				A18EE976266410BA003CD992 /* 28408-an-electric-car-lottie-animation.json in Resources */,
 				A15A3144266C0E3E005313D5 /* cardFlip1.wav in Resources */,
 				A1220D7B265570F500D7BF51 /* NearLogo.png in Resources */,
@@ -283,8 +284,11 @@
 				A115CD2E265127A40038E80F /* ViewController.swift in Sources */,
 				A13865E72662880600E1B201 /* NationViewController.swift in Sources */,
 				A18F46A42660076A00EA9DD1 /* NearDetailViewController.swift in Sources */,
+				A1FF94CA266D3AB600CE7938 /* NationChartViewController.swift in Sources */,
+				A1FF94C8266D294600CE7938 /* NearSightImageController.swift in Sources */,
 				A16C1ADD265A96420007D64E /* NearMapViewController.swift in Sources */,
 				A10189812656D10900FA30CC /* NearTabBarController.swift in Sources */,
+				A1FF94C6266CD60700CE7938 /* NearSightsViewController.swift in Sources */,
 				A15A3148266C0E88005313D5 /* Config.swift in Sources */,
 				A115CD2A265127A40038E80F /* AppDelegate.swift in Sources */,
 				A101897F2656CDA600FA30CC /* NearStationTableViewController.swift in Sources */,

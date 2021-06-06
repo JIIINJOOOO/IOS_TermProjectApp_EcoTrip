@@ -17,6 +17,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     // 현재 위치의 시
     var userCity : String = "" 
     
+    var audioController: AudioController
+    required init?(coder aDecoder: NSCoder) {
+        audioController = AudioController()
+        audioController.preloadAudioEffects(audioFileNames: AudioEffectFiles)
+        
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -137,6 +145,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    @IBAction func touchNearStation(_ sender: Any) {
+        audioController.playerEffect(name: SoundChip)
+    }
+    @IBAction func touchNationStation(_ sender: Any) {
+        audioController.playerEffect(name: SoundChip)
+    }
+    
     // 충전소 찾기 뷰에서 X 버튼 누르면 동작하는 unwind 메소드
     @IBAction func doneToMainViewController(segue:UIStoryboardSegue) {
         self.navigationController?.isNavigationBarHidden = true
@@ -144,6 +159,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToNearView" {
+            
             // 메인에선 네비게이션 바 없애고 메뉴 들어갔을 때만 네비게이션 바 생기도록
             self.navigationController?.isNavigationBarHidden = false
             if let tabController = segue.destination as? NearTabBarController {

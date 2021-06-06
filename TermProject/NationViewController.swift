@@ -555,6 +555,7 @@ class NationViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
                 mapController.posts = posts
                 mapController.statecity = selectState + " " + selectCity
                 mapController.bIsCityFilled = bIsCityFilled
+                mapController.cityArr = cityArr
             }
         }
     }

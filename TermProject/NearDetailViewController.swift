@@ -18,6 +18,11 @@ class NearDetailViewController: UIViewController, UITableViewDataSource,  UITabl
     var posts : [String] = ["","","","","","","","","","","",""]
     var stationName = ""
     
+    // 근처 관광지보기 위도,경도
+    var mapX = ""
+    var mapY = ""
+    var stationAddr = "" // 현재 충전소 주소, 이름 넘겨줘야함
+    
     @IBOutlet weak var detailTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -151,7 +156,12 @@ class NearDetailViewController: UIViewController, UITableViewDataSource,  UITabl
             let d_lon = (lng as NSString).doubleValue
             coordinate.latitude = d_lat
             coordinate.longitude = d_lon
-            let station = Station(title: statNm, locationName: addr, coordinate: CLLocationCoordinate2D(latitude: d_lat, longitude: d_lon))
+            // 근처 관광지보기 위도,경도로 넘겨줄 좌표
+            mapX = lng
+            mapY = lat
+            stationAddr = addr
+                
+                let station = Station(title: statNm, locationName: addr, coordinate: CLLocationCoordinate2D(latitude: d_lat, longitude: d_lon), markerTintColor: .red)
             stations.append(station)
             }
         }
@@ -179,8 +189,25 @@ class NearDetailViewController: UIViewController, UITableViewDataSource,  UITabl
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: -5, y: 5)
                 view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+                view.markerTintColor = annotation.markerTintColor
+
             }
             return view
         }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "segueToNearSight" {
+                if let tableController = segue.destination as? NearSightsViewController {
+                    tableController.statAddr = stationAddr
+                    tableController.statNm = stationName
+                    tableController.statMapX = mapX
+                    tableController.statMapY = mapY
+                }
+            
+        }
+    
+
+    }
 }

@@ -13,11 +13,12 @@ class Station: NSObject, MKAnnotation {
     let title: String?
     let locationName: String
     let coordinate: CLLocationCoordinate2D
-    
-    init(title: String, locationName: String, coordinate: CLLocationCoordinate2D) {
+    let markerTintColor: UIColor
+    init(title: String, locationName: String, coordinate: CLLocationCoordinate2D, markerTintColor: UIColor) {
         self.title = title
         self.locationName = locationName
         self.coordinate = coordinate
+        self.markerTintColor = markerTintColor
         
         super.init()
     }
